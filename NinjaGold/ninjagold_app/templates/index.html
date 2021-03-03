@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold!</title>
+</head>
+<body>
+    <h4>Your Gold So Far: {{ request.session.total_gold }}</h4>
+
+    <form action="/process_money" method="POST">
+        {% csrf_token %}
+        <h3>Farm</h3>
+        <h4>(earns 10 - 20 gold pieces)</h4>
+        <input type="hidden" name="place" value="farm">
+        <button type="submit">Find Gold!</button>
+    </form>
+    <form action="/process_money" method="POST">
+        {% csrf_token %}
+        <h3>Cave</h3>
+        <h4>(earns 5 - 10 gold pieces)</h4>
+        <input type="hidden" name="place" value="cave">
+        <button type="submit">Find Gold!</button>
+    </form>
+    <form action="/process_money" method="POST">
+        {% csrf_token %}
+        <h3>House</h3>
+        <h4>(earns 2 - 5 gold pieces)</h4>
+        <input type="hidden" name="place" value="house">
+        <button type="submit">Find Gold!</button>
+    </form>
+    <form action="/process_money" method="POST">
+        {% csrf_token %}
+        <h3>Casino</h3>
+        <h4>(earn/lose 0 - 50 gold pieces)</h4>
+        <input type="hidden" name="place" value="casino">
+        <button type="submit">Find Gold!</button>
+    </form>
+    <h2>Your Wins / Losses</h2>
+    <h2>{{ log }}</h2>
+
+</body>
+</html>
