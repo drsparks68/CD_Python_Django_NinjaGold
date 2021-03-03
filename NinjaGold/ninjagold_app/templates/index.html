@@ -38,7 +38,9 @@
         <button type="submit">Find Gold!</button>
     </form>
     <h2>Your Wins / Losses</h2>
-    <h2>{{ log }}</h2>
+    {% for event in request.session.ledger reversed %}
+    <h4>{{ event }}</h4>
+    {% endfor %}
 
 </body>
 </html>

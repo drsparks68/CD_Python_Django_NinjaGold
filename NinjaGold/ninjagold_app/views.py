@@ -3,8 +3,9 @@ import random
 from datetime import datetime
 
 def index(request):
-    request.session['total_gold'] = 0
-    request.session['ledger'] = []
+    if 'total_gold' not in request.session or 'ledger' not in request.session:
+        request.session['total_gold'] = 0
+        request.session['ledger'] = []
     return render(request, 'index.html')
 
 def process(request):
@@ -29,4 +30,9 @@ def process(request):
                 request.session['ledger'].append('OUCH! You lost ' + str(gold) + ' gold pieces from the ' + request.POST['place'] + '! (' + str(datetime.now()) + ')')
     
         request.session['total_gold'] += gold
-    return redirect('/')    
+    return redirect('/')
+
+def reset(request):
+    request.session['total_gold'] = 0
+    request.session['ledger'] = []
+    return redirect('/')
